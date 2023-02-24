@@ -1,0 +1,1 @@
+En la carpeta de ClientApp vamos a  actualizar reat con el comando: npm install react@latest react-dom@latest

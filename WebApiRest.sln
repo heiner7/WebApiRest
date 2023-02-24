@@ -5,17 +5,17 @@ VisualStudioVersion = 16.0.33214.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webapi", "Webapi\Webapi.csproj", "{FF7D10E1-209B-4145-9763-A00A6F2182C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{4A41565C-E85C-46B1-979F-A17707A3F965}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{4A41565C-E85C-46B1-979F-A17707A3F965}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{35786D38-23D5-42DC-9867-8472D0DC3D6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{35786D38-23D5-42DC-9867-8472D0DC3D6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{ECCEC13A-115A-4CBB-BC49-1E68E9F14B3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{ECCEC13A-115A-4CBB-BC49-1E68E9F14B3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{8E73A183-DD3D-43A4-B23C-3A8EC010C242}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{8E73A183-DD3D-43A4-B23C-3A8EC010C242}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{94A454F8-0F0A-49BF-9A95-5528F1896CF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{94A454F8-0F0A-49BF-9A95-5528F1896CF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstraction", "Abstraction\Abstraction.csproj", "{0B3292C1-70EC-4388-A9D8-725B0DCB364E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abstraction", "Abstraction\Abstraction.csproj", "{0B3292C1-70EC-4388-A9D8-725B0DCB364E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
