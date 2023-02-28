@@ -1,0 +1,7 @@
+//Actualizar react y el dom
+npm install react@latest react-dom@latest
+
+// es una biblioteca muy útil para los desarrolladores de aplicaciones React 
+//que necesitan realizar solicitudes HTTP a un servidor externo de forma asíncrona 
+//y actualizar el estado de su aplicación en consecuencia.
+npm install axios  

@@ -13,8 +13,8 @@ using Webapi.DTOs;
 namespace WebServices.Controllers
 {
     //Con esto se seguriza el controlador
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Roles =("Heiner"))]
-    [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Roles =("Heiner1"))]
+    [Route("api/")]
     [ApiController]
     public class FootballTeamController : ControllerBase
     {
@@ -29,6 +29,7 @@ namespace WebServices.Controllers
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 204NoContent.
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpGet]
+        [Route("FootballTeam/Get")]
         public IActionResult Get()
         {
             return _football.GetAll().Count > 0 ? Ok(_football.GetAll()) : NoContent();
@@ -40,12 +41,15 @@ namespace WebServices.Controllers
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 400BadRequest.
         [ProducesResponseType(typeof(ResponseDTO),StatusCodes.Status400BadRequest)]
         [HttpPost]
+        [Route("FootballTeam/SaveTeam")]
         public IActionResult Save(FootBallTeamDTO dto)
         {
             var f = new FootballTeam()
             {
                 Name = dto.Name,
-                Score = dto.Score
+                Foundation = dto.Foundation,
+                City = dto.City,
+                Coach = dto.Coach
             };
 
             return _football.Save(f) is not null ? Ok(_football.Save(f)) : BadRequest(new ResponseDTO()

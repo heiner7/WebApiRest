@@ -14,7 +14,7 @@ namespace DataAccess
         //Permite tener acceso a la tabla de la base de datos
         public DbSet<FootballTeam> Teams { get; set; } 
 
-        public DbSet<RegisterProduct> Usuarios { get; set; }
+        public DbSet<RegisterPlayer> Player { get; set; }
         //Crear constructor y recibe la configuracion que necesita Entity Framework
         //Se lo pasamos a DbContext
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
