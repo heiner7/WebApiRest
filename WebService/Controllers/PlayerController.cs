@@ -32,20 +32,36 @@ namespace WebService.Controllers
 
         [HttpPost]
         [Route("savePlayer")]
-        public async Task<IActionResult> savePlayer([FromBody] Player resquest)
+        public IActionResult savePlayer([FromBody] Player resquest)
         {     
             HttpResponseMessage response = Servicio.getInstance().PostResponse("api/Player/SavePlayer", resquest);
-            //response.EnsureSuccessStatusCode();
-            //Leer la respuesta de la consulta de la api de articulo
-            var consuPlayer = await response.Content.ReadAsStringAsync();
-            //Se usa para convertir esa cadena JSON en una lista de objetos "Articulo".
-            //articulos = JsonConvert.DeserializeObject<List<Product>>(consuArticulos);
+            
             if (response != null && response.IsSuccessStatusCode)
             {
-                return StatusCode(StatusCodes.Status200OK, consuPlayer);
+                return StatusCode(StatusCodes.Status200OK, "ok");
             }
+            else
+            {
+                return StatusCode(StatusCodes.Status400BadRequest);
+            }        
 
-            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        [HttpPut]
+        [Route("editPlayer")]
+        public IActionResult editPlayer([FromBody] Player resquest)
+        {
+
+            HttpResponseMessage response = Servicio.getInstance().PostResponse("api/Player/SavePlayer", resquest);
+
+            if (response != null && response.IsSuccessStatusCode)
+            {
+                return StatusCode(StatusCodes.Status200OK, "ok");
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status400BadRequest);
+            }
 
         }
     }

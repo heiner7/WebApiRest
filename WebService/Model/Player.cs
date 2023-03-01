@@ -4,7 +4,7 @@ namespace WebService.Model
 {
     public class Player
     {
-        public int Id { set; get; }
+        public int Id { get; set; }
         [StringLength(50)]
         public string? Name { get; set; }
         [StringLength(200)]

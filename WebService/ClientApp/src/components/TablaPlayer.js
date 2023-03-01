@@ -1,7 +1,13 @@
 ﻿
 import { Table, Button } from "reactstrap"
 
-const TablaPlayer = ({ data }) => {
+const TablaPlayer = ({ data, setEdit, mostrarModal, setMostrarModal }) => {
+
+    const sendData = (player) => {
+        setEdit(player)
+        setMostrarModal(!mostrarModal)
+    }
+
     return (
 
         <Table striped responsive>
@@ -26,7 +32,8 @@ const TablaPlayer = ({ data }) => {
                                     <td>{item.lastName}</td>
                                     <td>{item.position}</td>
                                     <td>
-                                        <Button color="primary" size="sm" className="me-2">Editar</Button>
+                                        <Button color="primary" size="sm" className="me-2" onClick={() => sendData(item)}
+                                        >Editar</Button>
                                         <Button color="danger" size="sm">Eliminar</Button>
                                     </td>
                                 </tr>

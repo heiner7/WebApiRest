@@ -8,6 +8,6 @@ namespace ApiRest.Abstraction
 {
     public interface IEntity
     {
-        int Id { set; get; }
+        int Id { get; set; }
     }
 }

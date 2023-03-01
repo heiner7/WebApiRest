@@ -9,36 +9,61 @@ import ModalPlayer from "./components/ModalPlayer";
 
 const App = () => {
 
-    const [player, setPlayer] = useState([])
+    const [players, setPlayer] = useState([])
     const [mostrarModal, setMostrarModal] = useState(false);
+    //Variable que almacena la informacion a editar
+    const [edit, setEdit] = useState(null)
 
-    const mostrarProduct = async () => {
+    const mostrarPlayer = async () => {
         const response = await fetch("api/player/obtenerPlayer");
         console.log(response)
         if (response.ok) {
             const data = await response.json();
             setPlayer(data)
         } else {
-            console.log("error")
+            console.log("error en la lista")
         }
     }
 
     useEffect(() => {
-        mostrarProduct()
+        mostrarPlayer()
     }, [])
 
-    const guardarProducto = async (player) => {
+    const salvePlayer = async (player) => {
         const response = await fetch("api/player/savePlayer", {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json;charset=uft-8'
+                'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify(player)
         })
 
         if (response.ok) {
             setMostrarModal(!mostrarModal);
-            mostrarProduct();
+            mostrarPlayer();
+        } else if (response.status == 400) {
+            console.log("error con el formato")
+        } else {
+            console.log("error con el servidor")
+        }
+    }
+
+    const editPlayer = async (player) => {
+        const response = await fetch("api/player/editPlayer", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(player)
+        })
+
+        if (response.ok) {
+            setMostrarModal(!mostrarModal);
+            mostrarPlayer();
+        } else if (response.status == 400) {
+            console.log("error con el formato")
+        } else {
+            console.log("error con el servidor")
         }
     }
 
@@ -54,7 +79,11 @@ const App = () => {
                         <CardBody>
                             <Button size="sm" color="success" onClick={() => setMostrarModal(!mostrarModal)}>Nuevo producto</Button>
                             <hr></hr>
-                            <TablaPlayer data={player} />
+                            <TablaPlayer data={players}
+                                setEdit={setEdit}
+                                mostrarModal={mostrarModal}
+                                setMostrarModal={setMostrarModal}
+                            />
                         </CardBody>
                     </Card>
                 </Col>
@@ -64,7 +93,11 @@ const App = () => {
             <ModalPlayer
                 mostrarModal={mostrarModal}
                 setMostrarModal={setMostrarModal}
-                guardarProducto={guardarProducto}
+                guardarProducto={salvePlayer}
+
+                edit={edit}
+                setEdit={setEdit}
+                editPlayer={editPlayer}
             />
         </Container>
     )

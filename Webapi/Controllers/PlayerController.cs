@@ -41,28 +41,31 @@ namespace Webapi.Controllers
         }
 
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 200OK.
-        [ProducesResponseType(typeof(FootballTeam), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(RegisterPlayer),StatusCodes.Status200OK)]
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 400BadRequest.
-        [ProducesResponseType(typeof(ResponseDTO), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
         [Route("Player/SavePlayer")]
         //El parametro [FromBody] para indicar que se espera recibir un objeto ExampleObject en el cuerpo del mensaje HTTP
-        public IActionResult Save( PlayerDTO dto)
+        public IActionResult Save([FromBody] PlayerDTO dto)
         {
-            var f = new RegisterPlayer()
+            try
             {
-                Name = dto.Name,
-                LastName = dto.LastName,
-                Position = dto.Position,
-                TeamId = dto.TeamId
-            };
+                var f = new RegisterPlayer()
+                {
+                    Name = dto.Name,
+                    LastName = dto.LastName,
+                    Position = dto.Position,
+                    TeamId = dto.TeamId
+                };
 
-            return _player.Save(f) is not null ? Ok(_player.Save(f)) : BadRequest(new ResponseDTO()
+                return Ok(_player.Save(f)); 
+            }
+            catch (Exception e)
             {
-                StatusCode = 404,
-                StatusMessage = "La solicitud fue incorrecto debido a una sintaxis incorrecta, una falta de " +
-                                     "información o un formato incorrecto en la solicitud."
-            });
+                return BadRequest();
+            }
+            
         }
 
     }

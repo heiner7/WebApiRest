@@ -39,7 +39,7 @@ namespace WebServices.Controllers
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 200OK.
         [ProducesResponseType(typeof(FootballTeam), StatusCodes.Status200OK)]
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 400BadRequest.
-        [ProducesResponseType(typeof(ResponseDTO),StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
         [Route("FootballTeam/SaveTeam")]
         public IActionResult Save(FootBallTeamDTO dto)
@@ -52,12 +52,8 @@ namespace WebServices.Controllers
                 Coach = dto.Coach
             };
 
-            return _football.Save(f) is not null ? Ok(_football.Save(f)) : BadRequest(new ResponseDTO()
-            {
-                StatusCode = 404,
-                StatusMessage = "La solicitud fue incorrecto debido a una sintaxis incorrecta, una falta de " +
-                                     "información o un formato incorrecto en la solicitud."
-            });
+            return Ok(_football.Save(f));
+            
         }
     }
 }
