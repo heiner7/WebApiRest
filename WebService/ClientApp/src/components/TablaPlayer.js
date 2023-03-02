@@ -1,7 +1,7 @@
 ﻿
 import { Table, Button } from "reactstrap"
 
-const TablaPlayer = ({ data, setEdit, mostrarModal, setMostrarModal }) => {
+const TablaPlayer = ({ data, setEdit, mostrarModal, setMostrarModal, removePlayer }) => {
 
     const sendData = (player) => {
         setEdit(player)
@@ -34,7 +34,7 @@ const TablaPlayer = ({ data, setEdit, mostrarModal, setMostrarModal }) => {
                                     <td>
                                         <Button color="primary" size="sm" className="me-2" onClick={() => sendData(item)}
                                         >Editar</Button>
-                                        <Button color="danger" size="sm">Eliminar</Button>
+                                        <Button color="danger" size="sm" onClick={() => removePlayer(item.id)}>Eliminar</Button>
                                     </td>
                                 </tr>
                             ))

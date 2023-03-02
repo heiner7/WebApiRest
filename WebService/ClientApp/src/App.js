@@ -67,6 +67,27 @@ const App = () => {
         }
     }
 
+    const removePlayer = async (id) => {
+
+        const responseWindow = window.confirm("¿Desea eliminar el jugador?")
+
+        if (!responseWindow) {
+            return;
+        }
+
+        const response = await fetch("api/player/removePlayer/" + id, {
+            method: 'DELETE'
+        })
+
+        if (response.ok) {
+            mostrarPlayer();
+        } else if (response.status == 400) {
+            console.log("error con el formato")
+        } else {
+            console.log("error con el servidor")
+        }
+    }
+
     return (
         <Container>
             <Row className="mt-5">
@@ -83,6 +104,8 @@ const App = () => {
                                 setEdit={setEdit}
                                 mostrarModal={mostrarModal}
                                 setMostrarModal={setMostrarModal}
+
+                                removePlayer={removePlayer }
                             />
                         </CardBody>
                     </Card>

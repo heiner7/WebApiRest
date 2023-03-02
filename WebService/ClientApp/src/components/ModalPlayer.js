@@ -29,6 +29,7 @@ const ModalPlayer = ({ mostrarModal, setMostrarModal, guardarProducto, edit, set
         } else {
             editPlayer(player)
         }
+        setPlayer(modeloPlayer)
     }
 
     useEffect(() => {
