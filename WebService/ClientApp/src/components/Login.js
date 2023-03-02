@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Login = () => {
-    const [username, usernameupdate] = useState('');
+    const usenavigate = useNavigate();
+    const [email, emailupdate] = useState('');
     const [password, passwordupdate] = useState('');
 
    // const usenavigate = useNavigate();
@@ -17,7 +18,7 @@ const Login = () => {
         if (validate()) {
             ///implentation
             // console.log('proceed');
-            fetch("http://localhost:8000/user/" + username).then((res) => {
+            fetch("http://localhost:8000/user/" + email).then((res) => {
                 return res.json();
             }).then((resp) => {
                 //console.log(resp)
@@ -26,7 +27,7 @@ const Login = () => {
                 } else {
                     if (resp.password === password) {
                         toast.success('Success');
-                        sessionStorage.setItem('username', username);
+                        sessionStorage.setItem('username', email);
                         //usenavigate('/')
                     } else {
                         toast.error('Please Enter valid credentials');
@@ -38,50 +39,41 @@ const Login = () => {
         }
     }
 
-    const ProceedLoginusingAPI = (e) => {
+    const ProceedLoginusingAPI = async (e) => {
         e.preventDefault();
         if (validate()) {
             ///implentation
             // console.log('proceed');
             let inputobj = {
-                "username": username,
-                "password": password
+                "Email": email,
+                "Password": password
             };
-            fetch("https://localhost:5001/api/Auth/Login", {
-                method: 'POST',
-                headers: { 'content-type': 'application/json' },
+            const response= await fetch("api/auth/Login", {
+                method: "POST",
+                
+                headers: { 'content-type': 'application/json;charset=utf-8' },
                 body: JSON.stringify(inputobj)
-            }).then((res) => {
-                return res.json();
-            }).then((resp) => {
-                console.log(resp)
-                if (Object.keys(resp).length === 0) {
-                    toast.error('Login failed, invalid credentials');
-                } else {
-                    toast.success('Success');
-                    sessionStorage.setItem('username', username);
-                    sessionStorage.setItem('jwttoken', resp.jwtToken);
-                    //usenavigate('/')
-                }
-                // if (Object.keys(resp).length === 0) {
-                //     toast.error('Please Enter valid username');
-                // } else {
-                //     if (resp.password === password) {
-                //         toast.success('Success');
-                //         sessionStorage.setItem('username',username);
-                //         usenavigate('/')
-                //     }else{
-                //         toast.error('Please Enter valid credentials');
-                //     }
-                // }
-            }).catch((err) => {
-                toast.error('Login Failed due to :' + err.message);
-            });
+             })
+            if (response.ok) {
+                const data = await response.json();
+                toast.success('Success');
+                console.log("Token", data.result.token)
+                
+                sessionStorage.setItem('username', data.result);
+                sessionStorage.setItem('jwttoken', data.jwtToken);
+                usenavigate('/')
+            } else if (response.status == 400) {
+                console.log("error con el formato")
+            } else {
+                console.log("error con el servidor")
+            }
+                    
+                
         }
     }
     const validate = () => {
         let result = true;
-        if (username === '' || username === null) {
+        if (email === '' || email === null) {
             result = false;
             toast.warning('Please Enter Username');
         }
@@ -102,7 +94,7 @@ const Login = () => {
                         <div className="card-body">
                             <div className="form-group">
                                 <label>User Name <span className="errmsg">*</span></label>
-                                <input value={username} onChange={e => usernameupdate(e.target.value)} className="form-control"></input>
+                                <input value={email} onChange={e => emailupdate(e.target.value)} className="form-control"></input>
                             </div>
                             <div className="form-group">
                                 <label>Password <span className="errmsg">*</span></label>

@@ -1,10 +1,8 @@
 ﻿import { Col, Container, Row, Card, CardHeader, CardBody, Button } from "reactstrap"
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { ToastContainer } from 'react-toastify';
-import TablaPlayer from "./components/TablaPlayer";
+import TablaPlayer from "./TablaPlayer";
 import { useEffect, useState } from "react";
-import ModalPlayer from "./components/ModalPlayer";
+import ModalPlayer from "./ModalPlayer";
 
 const ViewPlayer = () => {
 
@@ -29,9 +27,12 @@ const ViewPlayer = () => {
     }, [])
 
     const salvePlayer = async (player) => {
+        let jwttoken = sessionStorage.getItem('jwttoken');
+
         const response = await fetch("api/player/savePlayer", {
             method: 'POST',
             headers: {
+                'Authorization': 'bearer ' + jwttoken,
                 'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify(player)
