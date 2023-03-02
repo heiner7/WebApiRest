@@ -19,7 +19,7 @@ namespace Repository
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _ctx.Delete(id);
         }
 
         public IList<T> GetAll()

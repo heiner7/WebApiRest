@@ -24,7 +24,9 @@ namespace DataAccess
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _items.Remove(_items.Where(i => i.Id.Equals(id)).FirstOrDefault());
+            //Se grabe los cambios
+            _ctx.SaveChanges();
         }
 
         public IList<T> GetAll()
