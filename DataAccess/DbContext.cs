@@ -41,8 +41,16 @@ namespace DataAccess
 
         public T Save(T entity)
         {
-            _items.Add(entity);
-            //Se grabe los cambios
+            // Verificar si la entidad ya existe en la base de datos
+            T existingEntity = _items.FirstOrDefault(i => i.Id.Equals(entity.Id));
+
+            if (existingEntity != null)
+                //se actualiza la entidad existente con los valores de la entidad que se pasa como parámetro.
+                _ctx.Entry(existingEntity).CurrentValues.SetValues(entity);
+            else
+                _items.Add(entity);
+
+            // Guardar los cambios
             _ctx.SaveChanges();
             return entity;
         }

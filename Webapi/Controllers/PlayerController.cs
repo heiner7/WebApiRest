@@ -69,12 +69,41 @@ namespace Webapi.Controllers
         }
 
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 200OK.
+        [ProducesResponseType(typeof(RegisterPlayer), StatusCodes.Status200OK)]
+        //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 400BadRequest.
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [HttpPut]
+        [Route("Player/EditPlayer")]
+        //El parametro [FromBody] para indicar que se espera recibir un objeto ExampleObject en el cuerpo del mensaje HTTP
+        public IActionResult editPlayer([FromBody] PlayerDTO dto)
+        {
+            try
+            {
+                var f = new RegisterPlayer()
+                {
+                    Id = dto.Id,
+                    Name = dto.Name,
+                    LastName = dto.LastName,
+                    Position = dto.Position,
+                    TeamId = dto.TeamId
+                };
+
+                return Ok(_player.Save(f));
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+        }
+
+        //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 200OK.
         [ProducesResponseType(StatusCodes.Status200OK)]
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 400BadRequest.
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpDelete]
-        [Route("Player/removePlayer")]
-        //El parametro [FromBody] para indicar que se espera recibir un objeto ExampleObject en el cuerpo del mensaje HTTP
+        [Route("Player/removePlayer/{id:int}")]
+
         public IActionResult removeSave(int id)
         {
             try
