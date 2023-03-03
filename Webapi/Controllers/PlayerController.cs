@@ -40,10 +40,12 @@ namespace Webapi.Controllers
             return _player.GetAll().Count > 0 ? Ok(_player.GetAll()) : NoContent();         
         }
 
+        //Con esto se seguriza el controlador
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 200OK.
         [ProducesResponseType(typeof(RegisterPlayer),StatusCodes.Status200OK)]
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 400BadRequest.
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [HttpPost]
         [Route("Player/SavePlayer")]
         //El parametro [FromBody] para indicar que se espera recibir un objeto ExampleObject en el cuerpo del mensaje HTTP
@@ -63,15 +65,17 @@ namespace Webapi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest();
+                return Unauthorized();
             }
             
         }
 
+        //Con esto se seguriza el controlador
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 200OK.
         [ProducesResponseType(typeof(RegisterPlayer), StatusCodes.Status200OK)]
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 400BadRequest.
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [HttpPut]
         [Route("Player/EditPlayer")]
         //El parametro [FromBody] para indicar que se espera recibir un objeto ExampleObject en el cuerpo del mensaje HTTP
@@ -90,9 +94,9 @@ namespace Webapi.Controllers
 
                 return Ok(_player.Save(f));
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return BadRequest();
+                return Unauthorized();
             }
 
         }

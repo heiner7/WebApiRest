@@ -32,9 +32,17 @@ namespace WebService.Controllers
 
         [HttpPost]
         [Route("savePlayer")]
-        public IActionResult savePlayer([FromBody] Player resquest)
-        {     
-            HttpResponseMessage response = Servicio.getInstance().PostResponse("api/Player/SavePlayer", resquest);
+        public IActionResult savePlayer([FromBody] Player resquest, [FromHeader(Name = "Authorization")] string authorizationHeader)
+        {
+            //para enviar un objeto en formato JSON y pasarlo en HttpContent
+            var json = JsonConvert.SerializeObject(resquest);
+            //Se usa el StringContent para crear un contenido a partir de la cadena JSON que se desea enviar en la solicitud PutAsync.
+            //El primer parámetro es la cadena que se desea enviar como contenido, el segundo parámetro es el encoding que se desea utilizar
+            //para la cadena y el tercer parámetro es el tipo de contenido que se está enviando, aquí se está indicando que se está
+            //enviando un contenido de tipo "application/json"
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = Servicio.getInstance().PostResponse("api/Player/SavePlayer", content, authorizationHeader);
             
             if (response != null && response.IsSuccessStatusCode)
             {
@@ -48,7 +56,8 @@ namespace WebService.Controllers
 
         [HttpPut]
         [Route("editPlayer")]
-        public IActionResult editPlayer([FromBody] Player resquest)
+        public IActionResult editPlayer([FromBody] Player resquest, [FromHeader(Name = "Authorization")] string authorizationHeader
+)
         {
             //para enviar un objeto en formato JSON y pasarlo en HttpContent
             var json = JsonConvert.SerializeObject(resquest);
@@ -58,7 +67,7 @@ namespace WebService.Controllers
             //enviando un contenido de tipo "application/json"
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = Servicio.getInstance().PutResponse("api/Player/EditPlayer", content);
+            HttpResponseMessage response = Servicio.getInstance().PutResponse("api/Player/EditPlayer", content, authorizationHeader);
 
             if (response != null && response.IsSuccessStatusCode)
             {
@@ -66,7 +75,7 @@ namespace WebService.Controllers
             }
             else
             {
-                return StatusCode(StatusCodes.Status400BadRequest);
+                return StatusCode(StatusCodes.Status401Unauthorized);
             }
         }
 
@@ -82,7 +91,7 @@ namespace WebService.Controllers
             }
             else
             {
-                return StatusCode(StatusCodes.Status400BadRequest);
+                return StatusCode(StatusCodes.Status401Unauthorized);
             }
         }
 

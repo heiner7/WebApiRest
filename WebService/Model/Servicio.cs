@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 
 namespace WebSite.Models
@@ -62,13 +64,17 @@ namespace WebSite.Models
             return Client.GetAsync(url).Result;
         }
         //Metodo que envia la solicitud de put a la api establecida
-        public HttpResponseMessage PutResponse(string url, HttpContent model)
+        public HttpResponseMessage PutResponse(string url, HttpContent model, string token)
         {
+            // Agregar el token al encabezado Authorization
+            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             return Client.PutAsync(url, model).Result;
         }
-        public HttpResponseMessage PostResponse(string url, object model)
+        public HttpResponseMessage PostResponse(string url, HttpContent model, string token)
         {
-            return Client.PostAsJsonAsync(url, model).Result;
+            // Agregar el token al encabezado Authorization
+            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            return Client.PostAsync(url, model).Result;
         }
         public HttpResponseMessage DeleteResponse(string url)
         {

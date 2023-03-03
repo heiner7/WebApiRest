@@ -11,6 +11,8 @@ const Login = () => {
 
     useEffect(() => {
         sessionStorage.clear();
+        emailupdate("string3@gmail.com")
+        passwordupdate("String12!")
     }, []);
 
     const ProceedLogin = (e) => {
@@ -56,16 +58,35 @@ const Login = () => {
              })
             if (response.ok) {
                 const data = await response.json();
-                toast.success('Success');
-                console.log("Token", data.result.token)
+                console.log("Token", data.token)
                 
-                sessionStorage.setItem('username', data.result);
-                sessionStorage.setItem('jwttoken', data.jwtToken);
+                sessionStorage.setItem('username', email);
+                sessionStorage.setItem('jwttoken', data.token);
+                sessionStorage.setItem('rol', data.rol);
                 usenavigate('/')
             } else if (response.status == 400) {
-                console.log("error con el formato")
+                const data = await response.json();
+                toast.error("Error: "+ data.errors, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             } else {
-                console.log("error con el servidor")
+                toast.error('¡Error en la conexión con el servidor!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });              
             }
                     
                 
@@ -75,11 +96,11 @@ const Login = () => {
         let result = true;
         if (email === '' || email === null) {
             result = false;
-            toast.warning('Please Enter Username');
+            toast.warning('Ingrese el email');
         }
         if (password === '' || password === null) {
             result = false;
-            toast.warning('Please Enter Password');
+            toast.warning('Ingrese la contraseña');
         }
         return result;
     }
@@ -93,7 +114,7 @@ const Login = () => {
                         </div>
                         <div className="card-body">
                             <div className="form-group">
-                                <label>User Name <span className="errmsg">*</span></label>
+                                <label>Email <span className="errmsg">*</span></label>
                                 <input value={email} onChange={e => emailupdate(e.target.value)} className="form-control"></input>
                             </div>
                             <div className="form-group">

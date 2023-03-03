@@ -1,5 +1,5 @@
 ﻿import { Col, Container, Row, Card, CardHeader, CardBody, Button } from "reactstrap"
-
+import { toast } from "react-toastify";
 import TablaPlayer from "./TablaPlayer";
 import { useEffect, useState } from "react";
 import ModalPlayer from "./ModalPlayer";
@@ -18,7 +18,16 @@ const ViewPlayer = () => {
             const data = await response.json();
             setPlayer(data)
         } else {
-            console.log("error en la lista")
+            toast.info('¡No hay datos para mostrar!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
     }
 
@@ -32,8 +41,8 @@ const ViewPlayer = () => {
         const response = await fetch("api/player/savePlayer", {
             method: 'POST',
             headers: {
-                'Authorization': 'bearer ' + jwttoken,
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': jwttoken
             },
             body: JSON.stringify(player)
         })
@@ -41,18 +50,53 @@ const ViewPlayer = () => {
         if (response.ok) {
             setMostrarModal(!mostrarModal);
             mostrarPlayer();
-        } else if (response.status == 400) {
-            console.log("error con el formato")
+        } else if (response.status == 401) {
+            setMostrarModal(!mostrarModal);
+            toast.error('¡No esta autorizado!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        } else if (response.status == 500) {
+            setMostrarModal(!mostrarModal);
+            toast.error('¡Error en la conexión con el servidor!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         } else {
-            console.log("error con el servidor")
+            setMostrarModal(!mostrarModal);
+            toast.error('¡Posible campos vacios!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
     }
 
     const editPlayer = async (player) => {
+        let jwttoken = sessionStorage.getItem('jwttoken');
+        console.log("Token: " + jwttoken)
         const response = await fetch("api/player/editPlayer", {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': jwttoken
             },
             body: JSON.stringify(player)
         })
@@ -60,10 +104,42 @@ const ViewPlayer = () => {
         if (response.ok) {
             setMostrarModal(!mostrarModal);
             mostrarPlayer();
-        } else if (response.status == 400) {
-            console.log("error con el formato")
+        } else if (response.status == 401) {
+            setMostrarModal(!mostrarModal);
+            toast.error('¡No esta autorizado!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        } else if (response.status == 500) {
+            setMostrarModal(!mostrarModal);
+            toast.error('¡Error en la conexión con el servidor!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         } else {
-            console.log("error con el servidor")
+            setMostrarModal(!mostrarModal);
+            toast.error('¡Posible campos vacios!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
     }
 

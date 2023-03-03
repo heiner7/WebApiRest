@@ -1,5 +1,8 @@
-//Actualizar react y el dom
+//Actualizar react y el dom en la carpeta de clienteApp
 npm install react@latest react-dom@latest
+
+npm install react-toastify
+
 
 // es una biblioteca muy útil para los desarrolladores de aplicaciones React 
 //que necesitan realizar solicitudes HTTP a un servidor externo de forma asíncrona 

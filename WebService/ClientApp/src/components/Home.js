@@ -31,8 +31,8 @@ const Home = () => {
     return (
         <div>
             <div className="header">
-                <Link to={'/'}>Home</Link>
-                <span style={{ marginLeft: '80%' }}>Welcome <b>{displayusername}</b></span>
+                <Link to={'/viewPlayer'}>Lista Jugadores</Link>
+                <span style={{ marginLeft: '70%' }}>Welcome <b>{displayusername}</b></span>
                 <Link style={{ float: 'right' }} to={'/login'}>Logout</Link>
             </div>
             <h1 className="text-center">Welcome to Nihira Techiees</h1>

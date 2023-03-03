@@ -54,6 +54,10 @@ namespace Webapi.Controllers
             }
         }
 
+        //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 200OK.
+        [ProducesResponseType(typeof(UserLoginResponseDTO), StatusCodes.Status200OK)]
+        //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 204NoContent.
+        [ProducesResponseType(typeof(UserLoginResponseDTO), StatusCodes.Status204NoContent)]
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] UserLoginRequestDTO user)
@@ -67,7 +71,7 @@ namespace Webapi.Controllers
                       Login = false,
                       Errors = new List<string>()
                       {
-                          "Usuario o contraseña incorrecta!"
+                          "¡Email no registrado!"
                       }
                     });
                 }
@@ -99,7 +103,7 @@ namespace Webapi.Controllers
                         Login = false,
                         Errors = new List<string>()
                       {
-                          "Usuario o contraseña incorrecta!"
+                          "¡Email o contraseña incorrecta!"
                       }
                     });
                 }
@@ -111,7 +115,7 @@ namespace Webapi.Controllers
                     Login = false,
                     Errors = new List<string>()
                       {
-                          "Usuario o contraseña incorrecta!"
+                          "¡Error en el formato!"
                       }
                 });
             }
