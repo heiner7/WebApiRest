@@ -30,33 +30,15 @@ const Home = () => {
 
     return (
         <div>
-            <div className="header">
-                <Link to={'/viewPlayer'}>Lista Jugadores</Link>
-                <span style={{ marginLeft: '70%' }}>Welcome <b>{displayusername}</b></span>
-                <Link style={{ float: 'right' }} to={'/login'}>Logout</Link>
-            </div>
-            <h1 className="text-center">Welcome to Nihira Techiees</h1>
+            <h1 className="text-center">Bienvenido a mi pagina</h1>
             <table className="table table-bordered">
                 <thead>
                     <tr>
-                        <td>Code</td>
-                        <td>Name</td>
-                        <td>Email</td>
-                        <td>Credit Limit</td>
+                       
                     </tr>
                 </thead>
                 <tbody>
-                    {customerlist &&
-                        customerlist.map(item => (
-                            <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>{item.name}</td>
-                                <td>{item.email}</td>
-                                <td>{item.creditLimit}</td>
-                            </tr>
-
-                        ))
-                    }
+                    
                 </tbody>
 
             </table>

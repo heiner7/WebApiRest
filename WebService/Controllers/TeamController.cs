@@ -13,7 +13,7 @@ namespace WebService.Controllers
         [Route("obtenerTeam")]
         public async Task<IActionResult> obtenerTeam()
         {
-            HttpResponseMessage response = Servicio.getInstance().GetResponse("api/FootbalTeam/Get");
+            HttpResponseMessage response = Servicio.getInstance().GetResponse("api/FootballTeam/Get");
             //response.EnsureSuccessStatusCode();
             //Leer la respuesta de la consulta de la api de articulo
             var consuTeam = await response.Content.ReadAsStringAsync();

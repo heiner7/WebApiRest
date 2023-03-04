@@ -10,7 +10,7 @@ const modeloPlayer = {
     teamId: 1
 }
 
-const ModalPlayer = ({ mostrarModal, setMostrarModal, guardarProducto, edit, setEdit, editPlayer }) => {
+const ModalPlayer = ({ data, mostrarModal, setMostrarModal, guardarProducto, edit, setEdit, editPlayer }) => {
 
     const [player, setPlayer] = useState(modeloPlayer);
 
@@ -64,6 +64,16 @@ const ModalPlayer = ({ mostrarModal, setMostrarModal, guardarProducto, edit, set
                     <FormGroup>
                         <Label>Posición</Label>
                         <Input name="position" onChange={(e) => actualizarDato(e)} value={player.position} />
+                    </FormGroup>
+                    <FormGroup>
+                        <label >Equipo</label>
+                        <select name="teamId" onChange={(e) => actualizarDato(e)} value={player.teamId}>
+                            {data.map((team) => (
+                                <option key={team.id} value={team.id}>
+                                    {team.name}
+                                </option>
+                            ))}
+                        </select>
                     </FormGroup>
                 </Form>
             </ModalBody>

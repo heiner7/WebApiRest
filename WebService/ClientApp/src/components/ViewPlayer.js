@@ -7,13 +7,14 @@ import ModalPlayer from "./ModalPlayer";
 const ViewPlayer = () => {
 
     const [players, setPlayer] = useState([])
+    const [teams, setTeams] = useState([])
+
     const [mostrarModal, setMostrarModal] = useState(false);
     //Variable que almacena la informacion a editar
     const [edit, setEdit] = useState(null)
 
     const mostrarPlayer = async () => {
         const response = await fetch("api/player/obtenerPlayer");
-        console.log(response)
         if (response.ok) {
             const data = await response.json();
             setPlayer(data)
@@ -31,8 +32,29 @@ const ViewPlayer = () => {
         }
     }
 
+    const mostrarTeam = async () => {
+        const response = await fetch("api/team/obtenerTeam");
+        if (response.ok) {     
+            
+            const data = await response.json();           
+            setTeams(data)
+        } else {
+            toast.info('¡No hay datos para mostrar!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        }
+    }
+
     useEffect(() => {
         mostrarPlayer()
+        mostrarTeam()
     }, [])
 
     const salvePlayer = async (player) => {
@@ -91,7 +113,7 @@ const ViewPlayer = () => {
 
     const editPlayer = async (player) => {
         let jwttoken = sessionStorage.getItem('jwttoken');
-        console.log("Token: " + jwttoken)
+ 
         const response = await fetch("api/player/editPlayer", {
             method: 'PUT',
             headers: {
@@ -189,7 +211,7 @@ const ViewPlayer = () => {
 
             </Row>
 
-            <ModalPlayer
+            <ModalPlayer data={teams}
                 mostrarModal={mostrarModal}
                 setMostrarModal={setMostrarModal}
                 guardarProducto={salvePlayer}

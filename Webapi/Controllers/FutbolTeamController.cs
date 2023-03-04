@@ -12,8 +12,7 @@ using Webapi.DTOs;
 
 namespace WebServices.Controllers
 {
-    //Con esto se seguriza el controlador
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Roles =("Heiner1"))]
+    
     [Route("api/")]
     [ApiController]
     public class FootballTeamController : ControllerBase
@@ -35,7 +34,8 @@ namespace WebServices.Controllers
             return _football.GetAll().Count > 0 ? Ok(_football.GetAll()) : NoContent();
         }
 
-
+        //Con esto se seguriza el controlador
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme/*,Roles =("Heiner1")*/)]
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 200OK.
         [ProducesResponseType(typeof(FootballTeam), StatusCodes.Status200OK)]
         //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 400BadRequest.

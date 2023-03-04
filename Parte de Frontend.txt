@@ -1,6 +1,6 @@
 //Actualizar react y el dom en la carpeta de clienteApp
 npm install react@latest react-dom@latest
-
+npm install react-icons
 npm install react-toastify
 
 
