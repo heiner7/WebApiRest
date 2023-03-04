@@ -110,15 +110,15 @@ const Login = () => {
                 <form onSubmit={ProceedLoginusingAPI} className="container">
                     <div className="card">
                         <div className="card-header">
-                            <h2>User Login</h2>
+                            <h2>Inicio de sesión de usuario</h2>
                         </div>
                         <div className="card-body">
                             <div className="form-group">
-                                <label>Email <span className="errmsg">*</span></label>
+                                <label>Correo electrónico <span className="errmsg">*</span></label>
                                 <input value={email} onChange={e => emailupdate(e.target.value)} className="form-control"></input>
                             </div>
                             <div className="form-group">
-                                <label>Password <span className="errmsg">*</span></label>
+                                <label>Contraseña <span className="errmsg">*</span></label>
                                 <input type="password" value={password} onChange={e => passwordupdate(e.target.value)} className="form-control"></input>
                             </div>
                         </div>
