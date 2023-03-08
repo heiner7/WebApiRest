@@ -193,7 +193,7 @@ const ViewPlayer = () => {
                 <Col sm="12">
                     <Card>
                         <CardHeader>
-                            <h5>Lista de productos</h5>
+                            <h5>Lista de jugadores</h5>
                         </CardHeader>
                         <CardBody>
                             <Button size="sm" color="success" onClick={() => setMostrarModal(!mostrarModal)}>Nuevo producto</Button>
