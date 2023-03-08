@@ -7,8 +7,12 @@ Fronted:
 
 [![Captura-de-pantalla-73.png](https://i.postimg.cc/6pZ4HGsD/Captura-de-pantalla-73.png)](https://postimg.cc/tsXgJJ45)
 
-[![Captura-de-pantalla-72.png](https://i.postimg.cc/44M3rN1Z/Captura-de-pantalla-72.png)](https://postimg.cc/7b3Dz4cQ)
+[![Captura-de-pantalla-76.png](https://i.postimg.cc/7h3NbLc6/Captura-de-pantalla-76.png)](https://postimg.cc/H8LMhTTD)
+
+[![Captura-de-pantalla-75.png](https://i.postimg.cc/wMw7W8R2/Captura-de-pantalla-75.png)](https://postimg.cc/9wqmMkpw)
 
 Backend:
 
 [![Captura-de-pantalla-69.png](https://i.postimg.cc/Jz8H2z10/Captura-de-pantalla-69.png)](https://postimg.cc/GHMpBrTn)
+
+[![Captura-de-pantalla-77.png](https://i.postimg.cc/vBMTbHWX/Captura-de-pantalla-77.png)](https://postimg.cc/hJyc0nZ7)
