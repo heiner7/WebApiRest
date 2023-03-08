@@ -16,7 +16,7 @@ const TablaPlayer = ({ data, setEdit, mostrarModal, setMostrarModal, removePlaye
                     <th>Nombre</th>
                     <th>Apellidos</th>
                     <th>Posición</th>
-                    <th></th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>

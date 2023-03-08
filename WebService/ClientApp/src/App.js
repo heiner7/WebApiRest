@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ViewPlayer from "./components/ViewPlayer";
+import ViewTeam from "./components/ViewTeam";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -80,6 +81,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/viewPlayer" element={<ViewPlayer />} />
+                    <Route path="/viewTeam" element={<ViewTeam />} />
                     <Route path="/login" element={<Login />} />
                 </Routes>
             </BrowserRouter>
