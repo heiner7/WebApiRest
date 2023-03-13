@@ -67,10 +67,13 @@ const Home = () => {
 
     return (
         <div>
-            <h1 className="text-center">Bienvenidos</h1>
+            {/* Espacio entre sección */}
+            <div style={{ height: '70px' }}></div>
+
+            <h1 className="text-center">!Bienvenidos¡</h1>
             
             {/* Espacio entre sección */}
-            <div style={{ height: '50px' }}></div>
+            <div style={{ height: '30px' }}></div>
 
             <section className="ftco-section ftco-no-pb ftco-no-pt text-white" style={{ backgroundColor: '#1C2D3F', height: '450px' }}>
                 <div className="container">
