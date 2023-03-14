@@ -7,6 +7,7 @@ namespace Abstraction
     {
         T Save(T entity);
         IList<T> GetAll();
+        IList<T> GetProcedure();
         T GetById(int id);
         void Delete(int id);
     }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Home = () => {
     const usenavigate = useNavigate();
@@ -26,9 +27,11 @@ const Home = () => {
             console.log(err.messsage)
         });
 
+        mostrarEvents();
+
     }, []);
 
-    const eventos = [
+    /*const events = [
         {
             fecha: '25 de marzo',
             equipoLocal: 'Real Madrid',
@@ -47,7 +50,7 @@ const Home = () => {
             equipoVisitante: 'Marsella',
             estadio: 'Parc des Princes',
         },
-    ];
+    ];*/
 
     const resultados = [
         { equipo1: "Real Madrid", equipo2: "Barcelona", resultado: "2-1" },
@@ -63,6 +66,27 @@ const Home = () => {
         { equipo: "Valencia", puntos: 6 },
         { equipo: "Villarreal", puntos: 4 }
     ];
+
+    const [events, setEvents] = useState([])
+
+    const mostrarEvents = async () => {
+        const response = await fetch("api/procedure/obtenerEvents");
+        if (response.ok) {
+            const data = await response.json();
+            setEvents(data)
+        } else {
+            toast.info('¡No hay datos para mostrar!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        }
+    }
 
 
     return (
@@ -83,7 +107,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="row">
-                        {eventos.map((evento, index) => (
+                        {events.map((evento, index) => (
                             <div key={index} className="col-md-4 d-flex ftco-animate">
                                 <div className="blog-entry align-self-stretch">
                                     <div className="card" style={{ border: '1px solid #fff', backgroundColor: 'transparent' }}>
@@ -92,13 +116,13 @@ const Home = () => {
                                             <div className="text mt-3">
                                                 <div className="posted mb-3 d-flex">
                                                     <div className="desc pl-3">
-                                                        <span>{evento.fecha}</span>
+                                                        <span>{evento.date}</span>
                                                         <span className="mx-2">/</span>
                                                         <span>Deportes</span>
                                                     </div>
                                                 </div>
-                                                <h3 className="heading">{evento.equipoLocal} vs {evento.equipoVisitante}</h3>
-                                                <p>{evento.estadio}</p>
+                                                <h3 className="heading">{evento.teamLocal} vs {evento.teamVisit}</h3>
+                                                <p>{evento.stadiumName}</p>
                                             </div>
                                         </div>
                                     </div>

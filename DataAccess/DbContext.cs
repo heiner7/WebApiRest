@@ -1,7 +1,9 @@
 ﻿using Abstraction;
 using ApiRest.Abstraction;
 using DataAccess;
+using Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +39,13 @@ namespace DataAccess
         public T GetById(int id)
         {
             return _items.Where(i => i.Id.Equals(id)).FirstOrDefault();
+        }
+
+        public IList<T> GetProcedure()
+        {
+           
+            return _items.FromSqlRaw("EXECUTE obtenerEvents").ToList();
+
         }
 
         public T Save(T entity)

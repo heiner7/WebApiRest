@@ -8,7 +8,8 @@ const context =  [
   "/weatherforecast",
     "/api/player",
   "/api/team",
-  "/api/auth"
+  "/api/auth",
+  "/api/procedure"
   //"https://localhost:5001/api/Product/Get"
 ];
 

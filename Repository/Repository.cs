@@ -32,6 +32,11 @@ namespace Repository
             throw new NotImplementedException();
         }
 
+        public IList<T> GetProcedure()
+        {
+            return _ctx.GetProcedure();
+        }
+
         public T Save(T entity)
         {
             return _ctx.Save(entity);

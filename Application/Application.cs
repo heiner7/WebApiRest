@@ -33,6 +33,11 @@ namespace Application
             return _repository.GetById(id);
         }
 
+        public IList<T> GetProcedure()
+        {
+            return _repository.GetProcedure();
+        }
+
         public T Save(T entity)
         {
             return _repository.Save(entity);
