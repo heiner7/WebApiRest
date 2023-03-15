@@ -32,9 +32,9 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public IList<T> GetProcedure()
+        public IList<T> GetProcedure(string procedure)
         {
-            return _ctx.GetProcedure();
+            return _ctx.GetProcedure(procedure);
         }
 
         public T Save(T entity)

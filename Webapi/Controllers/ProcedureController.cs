@@ -23,7 +23,18 @@ namespace Webapi.Controllers
         [Route("Procedure/GetEvents")]
         public IActionResult GetDataEvents()
         {
-            return _data.GetProcedure().Count > 0 ? Ok(_data.GetProcedure()) : NoContent();
+            return _data.GetProcedure("EXECUTE obtenerEvents").Count > 0 ? Ok(_data.GetProcedure("EXECUTE obtenerEvents")) : NoContent();
+        }
+
+        //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 200OK.
+        [ProducesResponseType(typeof(DataEvent), StatusCodes.Status200OK)]
+        //indica que el método de acción puede devolver una respuesta HTTP con el código de estado 204NoContent.
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [HttpGet]
+        [Route("Procedure/GetResultEvents")]
+        public IActionResult GetResultEvents()
+        {
+            return _data.GetProcedure("EXECUTE resultEvents").Count > 0 ? Ok(_data.GetProcedure("EXECUTE resultEvents")) : NoContent();
         }
     }
 }

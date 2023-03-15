@@ -41,10 +41,10 @@ namespace DataAccess
             return _items.Where(i => i.Id.Equals(id)).FirstOrDefault();
         }
 
-        public IList<T> GetProcedure()
+        public IList<T> GetProcedure(string procedure)
         {
            
-            return _items.FromSqlRaw("EXECUTE obtenerEvents").ToList();
+            return _items.FromSqlRaw(procedure).ToList();
 
         }
 

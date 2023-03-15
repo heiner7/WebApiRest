@@ -33,9 +33,9 @@ namespace Application
             return _repository.GetById(id);
         }
 
-        public IList<T> GetProcedure()
+        public IList<T> GetProcedure(string procedure)
         {
-            return _repository.GetProcedure();
+            return _repository.GetProcedure(procedure);
         }
 
         public T Save(T entity)

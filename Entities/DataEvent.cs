@@ -15,6 +15,7 @@ namespace Entities
         public string TeamVisit { get; set; }
         public string StadiumName { get; set; }
         public DateTime Date { get; set; }
+        public string Result { get; set; }
 
     }
 }
