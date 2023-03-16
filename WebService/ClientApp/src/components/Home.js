@@ -6,29 +6,9 @@ const Home = () => {
     const usenavigate = useNavigate();
     const [customerlist, listupdate] = useState(null);
     const [displayusername, displayusernameupdate] = useState('');
-    useEffect(() => {
-        let username = sessionStorage.getItem('username');
-        if (username === '' || username === null) {
-            usenavigate('/login');
-        } else {
-            displayusernameupdate(username);
-        }
 
-        let jwttoken = sessionStorage.getItem('jwttoken');
-        fetch("https://localhost:5001/Auth/Login", {
-            headers: {
-                'Authorization': 'bearer ' + jwttoken
-            }
-        }).then((res) => {
-            return res.json();
-        }).then((resp) => {
-            listupdate(resp);
-        }).catch((err) => {
-            console.log(err.messsage)
-        });
-
+    useEffect(() => {        
         mostrarEvents();
-
     }, []);
 
     /*const events = [
@@ -75,7 +55,7 @@ const Home = () => {
             const data = await response.json();
             setEvents(data)
         } else {
-            toast.info('¡No hay datos para mostrar!', {
+            toast.info('¡No hay datos de eventos para mostrar!', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,

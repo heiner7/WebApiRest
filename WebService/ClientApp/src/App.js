@@ -7,14 +7,24 @@ import ViewTeam from "./components/ViewTeam";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaHome, FaUser, FaFootballBall, FaUserFriends, FaSignInAlt } from 'react-icons/fa';
+import { FaSignOutAlt, FaHome, FaUser, FaFootballBall, FaUserFriends, FaSignInAlt } from 'react-icons/fa';
 
 function App() {
     const [displayusername, displayusernameupdate] = useState('');
+    const [estaLogueado, setEstaLogueado] = useState(false);
+    const [estaNoLogueado, setEstaNoLogueado] = useState(false);
 
     useEffect(() => {
         let username = sessionStorage.getItem('username');
-        displayusernameupdate(username);
+        if (username === '' || username === null) {
+            displayusernameupdate("Invitado");
+            setEstaLogueado(false);
+            setEstaNoLogueado(true);
+        } else {
+            displayusernameupdate(username);
+            setEstaLogueado(true);
+            setEstaNoLogueado(false);
+        }
         
     }, [])
 
@@ -69,9 +79,17 @@ function App() {
                                     </li>
                                 </li>
                                 <li className="nav-item me-3">
-                                    <Link className="nav-link" to="/login">
-                                        <FaSignInAlt /> Salir
-                                    </Link>
+                                    
+                                    {estaNoLogueado && (
+                                        <Link id="login-item" className="nav-link" to="/login">
+                                            <FaSignInAlt /> Login
+                                        </Link>
+                                    )}
+                                    {estaLogueado && (
+                                        <Link id="salir-item" className="nav-link" to="/logout">
+                                            <FaSignOutAlt /> Salir
+                                        </Link>
+                                    )}
                                 </li>
                             </ul>
                         </div>

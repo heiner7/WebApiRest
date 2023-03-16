@@ -21,7 +21,7 @@ const ViewPlayer = () => {
         } else {
             toast.info('¡No hay datos para mostrar!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -38,7 +38,7 @@ const ViewPlayer = () => {
             
             const data = await response.json();           
             setTeams(data)
-        } else {
+        } /*else {
             toast.info('¡No hay datos para mostrar!', {
                 position: "top-center",
                 autoClose: 5000,
@@ -49,7 +49,7 @@ const ViewPlayer = () => {
                 progress: undefined,
                 theme: "dark",
             });
-        }
+        }*/
     }
 
     useEffect(() => {
@@ -76,7 +76,7 @@ const ViewPlayer = () => {
             setMostrarModal(!mostrarModal);
             toast.error('¡No esta autorizado!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -88,7 +88,7 @@ const ViewPlayer = () => {
             setMostrarModal(!mostrarModal);
             toast.error('¡Error en la conexión con el servidor!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -100,7 +100,7 @@ const ViewPlayer = () => {
             setMostrarModal(!mostrarModal);
             toast.error('¡Posible campos vacios!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -130,7 +130,7 @@ const ViewPlayer = () => {
             setMostrarModal(!mostrarModal);
             toast.error('¡No esta autorizado!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -142,7 +142,7 @@ const ViewPlayer = () => {
             setMostrarModal(!mostrarModal);
             toast.error('¡Error en la conexión con el servidor!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -154,7 +154,7 @@ const ViewPlayer = () => {
             setMostrarModal(!mostrarModal);
             toast.error('¡Posible campos vacios!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -180,14 +180,35 @@ const ViewPlayer = () => {
         if (response.ok) {
             mostrarPlayer();
         } else if (response.status == 400) {
-            console.log("error con el formato")
+            toast.error('¡error con el formato!', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         } else {
-            console.log("error con el servidor")
+            toast.error('¡error con el servidor!', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
     }
 
     return (
         <Container>
+            {/* Espacio entre sección */}
+            <div style={{ height: '70px' }}></div>
+
             <Row className="mt-5">
 
                 <Col sm="12">

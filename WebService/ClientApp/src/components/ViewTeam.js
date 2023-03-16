@@ -20,7 +20,7 @@ const ViewTeam = () => {
         } else {
             toast.info('¡No hay datos para mostrar!', {
                 position: "top-center",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -37,6 +37,9 @@ const ViewTeam = () => {
 
     return (
         <Container>
+            {/* Espacio entre sección */}
+            <div style={{ height: '70px' }}></div>
+
             <Row className="mt-5">
 
                 <Col sm="12">
