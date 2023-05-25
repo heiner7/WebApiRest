@@ -3,10 +3,11 @@ using ApiRest.Abstraction;
 using Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Application
 {
-    public interface IApplication<T> : ICrud<T>
+    public interface IApplication<T> : ICrud<T>, IGetPage<T>
     {
 
     }
@@ -36,6 +37,12 @@ namespace Application
         public T Save(T entity)
         {
             return _repository.Save(entity);
+        }
+
+        public IEnumerable<T> GetPage(IEnumerable<T> collection, int pageNumber, int resultsPage)
+        {
+            int startIndex = (pageNumber - 1) * resultsPage;
+            return collection.Skip(startIndex).Take(resultsPage);
         }
     }
 }
