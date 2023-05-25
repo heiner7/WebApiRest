@@ -10,9 +10,4 @@ namespace Abstraction
         IList<T> GetByState(bool estado);
         void Delete(int id);
     }
-
-    public interface IGetPage<T>
-    {
-        IEnumerable<T> GetPage(IEnumerable<T> collection, int pageNumber, int resultsPage);
-    }
 }
