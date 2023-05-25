@@ -76,10 +76,8 @@ namespace WebSite.Models
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             return Client.PostAsync(url, model).Result;
         }
-        public HttpResponseMessage DeleteResponse(string url, string token)
+        public HttpResponseMessage DeleteResponse(string url)
         {
-            // Agregar el token al encabezado Authorization
-            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             return Client.DeleteAsync(url).Result;
         }
     }

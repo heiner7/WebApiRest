@@ -9,6 +9,5 @@ namespace ApiRest.Abstraction
     public interface IEntity
     {
         int Id { get; set; }
-        bool TareaCompleta { get; set; }
     }
 }
