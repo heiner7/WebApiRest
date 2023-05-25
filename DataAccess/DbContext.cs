@@ -31,20 +31,20 @@ namespace DataAccess
             _ctx.SaveChanges();
         }
 
-        public IList<T> GetAll()
+        public IList<T> GetAll(int id)
         {
-            return _items.ToList();
+            // Verificar si la entidad ya existe en la base de datos
+            T existingEntity = _items.FirstOrDefault(i => i.Id.Equals(id));
+
+            if (existingEntity != null)
+                return _items.Where(i => i.Id.Equals(id)).ToList();
+            else
+                return _items.ToList();
         }
 
-        public T GetById(int id)
+        public IList<T> GetByState(bool estado)
         {
-            return _items.Where(i => i.Id.Equals(id)).FirstOrDefault();
-        }
-
-        public IList<T> GetProcedure(string procedure)
-        {
-           
-            return _items.FromSqlRaw(procedure).ToList();
+            return _items.Where(i => i.TareaCompleta == estado).ToList();
 
         }
 

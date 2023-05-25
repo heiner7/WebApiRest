@@ -41,11 +41,11 @@ namespace Webapi
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Webapi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Prueba Tarea", Version = "v1" });
             });
 
             services.AddDbContext<ApiDbContext>(options =>
-              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Webapi")
+              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("BackendApi")
             ));
 
             //Objecto que queremos configurar y donde saca la configuración
@@ -95,7 +95,7 @@ namespace Webapi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Webapi v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BackendApi v1"));
             }
 
             app.UseHttpsRedirection();

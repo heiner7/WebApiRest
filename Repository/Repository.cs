@@ -22,19 +22,14 @@ namespace Repository
             _ctx.Delete(id);
         }
 
-        public IList<T> GetAll()
+        public IList<T> GetAll(int id)
         {
-            return _ctx.GetAll();
+            return _ctx.GetAll(id);
         }
 
-        public T GetById(int id)
+        public IList<T> GetByState(bool estado)
         {
-            throw new NotImplementedException();
-        }
-
-        public IList<T> GetProcedure(string procedure)
-        {
-            return _ctx.GetProcedure(procedure);
+            return _ctx.GetByState(estado);
         }
 
         public T Save(T entity)

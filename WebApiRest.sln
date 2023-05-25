@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webapi", "Webapi\Webapi.csproj", "{FF7D10E1-209B-4145-9763-A00A6F2182C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendApi", "Webapi\BackendApi.csproj", "{FF7D10E1-209B-4145-9763-A00A6F2182C8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{4A41565C-E85C-46B1-979F-A17707A3F965}"
 EndProject
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abstraction", "Abstraction\Abstraction.csproj", "{0B3292C1-70EC-4388-A9D8-725B0DCB364E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService", "WebService\WebService.csproj", "{6F512746-22E5-4C2F-8C5B-31D8981CA488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebService", "WebService\WebService.csproj", "{6F512746-22E5-4C2F-8C5B-31D8981CA488}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

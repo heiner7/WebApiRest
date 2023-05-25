@@ -9,13 +9,13 @@ namespace WebService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PlayerController : ControllerBase
+    public class TaskController : ControllerBase
     {
         [HttpGet]
-        [Route("obtenerPlayer")]
-        public async Task<IActionResult> obtenerPlayer()
+        [Route("obtenerTarea/{id:int}")]
+        public async Task<IActionResult> obtenerTarea(int id)
         {                      
-             HttpResponseMessage response = Servicio.getInstance().GetResponse("api/Player/Get");
+             HttpResponseMessage response = Servicio.getInstance().GetResponse("api/Tarea/ObtenerTarea/"+id);
              //response.EnsureSuccessStatusCode();
              //Leer la respuesta de la consulta de la api de articulo
               var consuPlayer = await response.Content.ReadAsStringAsync();
@@ -30,9 +30,28 @@ namespace WebService.Controllers
 
         }
 
+        [HttpGet]
+        [Route("obtenerEstadoTarea/{estado:bool}")]
+        public async Task<IActionResult> obtenerEstadoTarea(bool estado)
+        {
+            HttpResponseMessage response = Servicio.getInstance().GetResponse("api/Tarea/ObtenerEstadoTarea/"+estado);
+            //response.EnsureSuccessStatusCode();
+            //Leer la respuesta de la consulta de la api de articulo
+            var consuTarea = await response.Content.ReadAsStringAsync();
+            //Se usa para convertir esa cadena JSON en una lista de objetos "Articulo".
+            //articulos = JsonConvert.DeserializeObject<List<Product>>(consuArticulos);
+            if (response != null && response.IsSuccessStatusCode)
+            {
+                return StatusCode(StatusCodes.Status200OK, consuTarea);
+            }
+
+            return StatusCode(StatusCodes.Status204NoContent, consuTarea);
+
+        }
+
         [HttpPost]
-        [Route("savePlayer")]
-        public IActionResult savePlayer([FromBody] Player resquest, [FromHeader(Name = "Authorization")] string authorizationHeader)
+        [Route("guardarTarea")]
+        public IActionResult guardarTarea([FromBody] Tarea resquest, [FromHeader(Name = "Authorization")] string authorizationHeader)
         {
             //para enviar un objeto en formato JSON y pasarlo en HttpContent
             var json = JsonConvert.SerializeObject(resquest);
@@ -42,7 +61,7 @@ namespace WebService.Controllers
             //enviando un contenido de tipo "application/json"
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = Servicio.getInstance().PostResponse("api/Player/SavePlayer", content, authorizationHeader);
+            HttpResponseMessage response = Servicio.getInstance().PostResponse("api/Tarea/GuardarTarea", content, authorizationHeader);
             
             if (response != null && response.IsSuccessStatusCode)
             {
@@ -50,13 +69,13 @@ namespace WebService.Controllers
             }
             else
             {
-                return StatusCode(StatusCodes.Status400BadRequest);
+                return StatusCode(StatusCodes.Status401Unauthorized);
             }        
         }
 
         [HttpPut]
-        [Route("editPlayer")]
-        public IActionResult editPlayer([FromBody] Player resquest, [FromHeader(Name = "Authorization")] string authorizationHeader
+        [Route("editarTarea")]
+        public IActionResult editarTarea([FromBody] Tarea resquest, [FromHeader(Name = "Authorization")] string authorizationHeader
 )
         {
             //para enviar un objeto en formato JSON y pasarlo en HttpContent
@@ -67,7 +86,7 @@ namespace WebService.Controllers
             //enviando un contenido de tipo "application/json"
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = Servicio.getInstance().PutResponse("api/Player/EditPlayer", content, authorizationHeader);
+            HttpResponseMessage response = Servicio.getInstance().PutResponse("api/Tarea/EditarTarea", content, authorizationHeader);
 
             if (response != null && response.IsSuccessStatusCode)
             {
@@ -80,10 +99,10 @@ namespace WebService.Controllers
         }
 
         [HttpDelete]
-        [Route("removePlayer/{id:int}")]
-        public IActionResult removePlayer(int id)
+        [Route("eliminarTarea/{id:int}")]
+        public IActionResult eliminarTarea(int id, [FromHeader(Name = "Authorization")] string authorizationHeader)
         {           
-            HttpResponseMessage response = Servicio.getInstance().DeleteResponse("api/Player/removePlayer/"+id);
+            HttpResponseMessage response = Servicio.getInstance().DeleteResponse("api/Tarea/eliminarTarea/" + id, authorizationHeader);
 
             if (response != null && response.IsSuccessStatusCode)
             {

@@ -23,19 +23,14 @@ namespace Application
             _repository.Delete(id);
         }
 
-        public IList<T> GetAll()
+        public IList<T> GetAll(int id)
         {
-            return _repository.GetAll();
+            return _repository.GetAll(id);
         }
 
-        public T GetById(int id)
+        public IList<T> GetByState(bool estado)
         {
-            return _repository.GetById(id);
-        }
-
-        public IList<T> GetProcedure(string procedure)
-        {
-            return _repository.GetProcedure(procedure);
+            return _repository.GetByState(estado);
         }
 
         public T Save(T entity)

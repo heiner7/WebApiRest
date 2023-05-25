@@ -12,12 +12,8 @@ namespace DataAccess
     public class ApiDbContext : IdentityDbContext
     {
         //Permite tener acceso a la tabla de la base de datos
-        public DbSet<FootballTeam> Teams { get; set; } 
-        public DbSet<RegisterPlayer> Player { get; set; }
-        public DbSet<Events> Events { get; set; }
-        public DbSet<ResultEvent> Results { get; set; }
-        public DbSet<Stadium> Stadium { get; set; }
-        public DbSet<DataEvent> DataEvents { get; set; }
+        public DbSet<Tarea> Tareas { get; set; } 
+
         //Crear constructor y recibe la configuracion que necesita Entity Framework
         //Se lo pasamos a DbContext
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)

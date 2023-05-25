@@ -15,32 +15,7 @@ const Login = () => {
         passwordupdate("String12!")
     }, []);
 
-    const ProceedLogin = (e) => {
-        e.preventDefault();
-        if (validate()) {
-            ///implentation
-            // console.log('proceed');
-            fetch("http://localhost:8000/user/" + email).then((res) => {
-                return res.json();
-            }).then((resp) => {
-                //console.log(resp)
-                if (Object.keys(resp).length === 0) {
-                    toast.error('Please Enter valid username');
-                } else {
-                    if (resp.password === password) {
-                        toast.success('Success');
-                        sessionStorage.setItem('username', email);
-                        //usenavigate('/')
-                    } else {
-                        toast.error('Please Enter valid credentials');
-                    }
-                }
-            }).catch((err) => {
-                toast.error('Login Failed due to :' + err.message);
-            });
-        }
-    }
-
+    
     const ProceedLoginusingAPI = async (e) => {
         e.preventDefault();
         if (validate()) {
@@ -58,12 +33,11 @@ const Login = () => {
              })
             if (response.ok) {
                 const data = await response.json();
-                console.log("Token", data.token)
                 
                 sessionStorage.setItem('username', email);
                 sessionStorage.setItem('jwttoken', data.token);
                 sessionStorage.setItem('rol', data.rol);
-                usenavigate('/')
+                usenavigate('/viewTask')
             } else if (response.status == 400) {
                 const data = await response.json();
                 toast.error("Error: "+ data.errors, {
